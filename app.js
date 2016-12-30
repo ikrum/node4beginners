@@ -4,9 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var apiRoute = require('./routes/api.route');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -22,33 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
-
-
-app.get('/class/:day', function(req,res,next){
-  var response = {
-    method: req.method,
-    url: req.url,
-    message: req.query.message,
-    day: req.params.day
-  };
-
-  res.json(response);
-});
-
-app.post('/class/:day', function(req,res,next){
-  var response = {
-    method: req.method,
-    url: req.url,
-    message: req.body.message,
-    day: req.params.day,
-    name: req.body.name,
-    email: req.body.email
-  };
-
-  res.json(response);
-});
+app.use('/api', apiRoute);
 
 
 // catch 404 and forward to error handler
