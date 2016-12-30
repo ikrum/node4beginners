@@ -36,7 +36,7 @@ var User = new Schema({
 		validate: [validator.isEmail, 'Invalid email address']
 
 	},
-  passsword:{
+  password:{
 		type: String,
 		required: true
 	},

@@ -1,6 +1,6 @@
 "use strict";
 
-var Sequence = require('../models/sequenceModel');
+var Sequence = require('../models/sequence.model');
 
 // Create a sequence
 exports.sequenceGenerator = function(name){
