@@ -1,16 +1,11 @@
-exports.getUser = function(req,res,next){
-  res.send('users');
-}
-
-exports.getMessage = function(req,res,next){
-  res.send("this is a message from an user");
-}
-
+var User = require('../models/user.model');
+var sequence = require('../utils/dbHelper').sequenceGenerator('user');
 
 exports.addUser = function(req,res,next){
 
 	User.findOne({email: req.body.email.toLowerCase()},function(err, user) {
-		if(user) return res.json({error:true, message:"Email already exists"});
+		if(user)
+      return res.json({error:true, message:"Email already exists"});
 
 		var timeStamp = Date.now();
 		var userObj={
@@ -30,11 +25,12 @@ exports.addUser = function(req,res,next){
 				if (err){
 					console.log(err);
 					if(err.name == 'ValidationError')
-            return res.json({error:ture, message: "Invalid Input"});
-					return next(err);
+            return res.json({error:true, message: "Invalid Input"});
+
+				  return res.json({error:true, message: "Unexpected ERROR"});
 				}
 
-        var data = JOSN.parse(JSON.stringify(user));
+        var data = JSON.parse(JSON.stringify(user));
         delete data.salt;
         delete data.password;
 				res.status(200).json({error:false,message:"New user added",data: data});
@@ -42,8 +38,6 @@ exports.addUser = function(req,res,next){
 		});
 	});
 }
-
-
 
 exports.updateUser = function(req,res,next){
   	User.update({
@@ -54,7 +48,7 @@ exports.updateUser = function(req,res,next){
         status:'Active'
       }
     },function(){
-      
+
     });
 }
 exports.deleteUser = function(req,res,next){
@@ -65,4 +59,9 @@ exports.deleteUser = function(req,res,next){
 
 		res.status(200).json({message:"User deleted"});
 	});
+
+exports.getUser = function(req,res,next){
+  User.findOne({userid: req.params.userid},function(err, result){
+    res.json({error: false, message: "single users", data: result});
+  });
 }
