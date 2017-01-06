@@ -42,3 +42,27 @@ exports.addUser = function(req,res,next){
 		});
 	});
 }
+
+
+
+exports.updateUser = function(req,res,next){
+  	User.update({
+      chapterid:req.body.userid
+    },
+    {
+      $set:{
+        status:'Active'
+      }
+    },function(){
+      
+    });
+}
+exports.deleteUser = function(req,res,next){
+	User.remove({ userid:req.params.userid },function(err,doc){
+		if(err) return next(err);
+		// check if the doc modified ?
+		if(doc.result.n<1) return next("Delete unsuccessful");
+
+		res.status(200).json({message:"User deleted"});
+	});
+}
