@@ -45,13 +45,22 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  var message = "Bad request";
+  var status = 400;
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  if(typeof err == 'string'){
+    message = err;
+  }else{
+    message = err.message;
+    status = err.status || 500;
+
+    if(err.name == 'ValidationError')
+      message = "Invalid Input for ";
+
+  }
+
+  res.status(status).json({error:true, message:message});
+
 });
 
 module.exports = app;

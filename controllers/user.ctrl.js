@@ -4,8 +4,13 @@ var sequence = require('../utils/dbHelper').sequenceGenerator('user');
 exports.addUser = function(req,res,next){
 
 	User.findOne({email: req.body.email.toLowerCase()},function(err, user) {
-		if(user)
-      return res.json({error:true, message:"Email already exists"});
+		if(user) return next("Email already exists");
+
+		if(!isValid(req.body.number))
+			if(user) return next("Email already exists");
+
+		if(!isValid(req.body.number))
+			if(user) return next("Email already exists");
 
 		var timeStamp = Date.now();
 		var userObj={
@@ -22,13 +27,7 @@ exports.addUser = function(req,res,next){
 			var user = new User(userObj);
 
 			user.save(function(err) {
-				if (err){
-					console.log(err);
-					if(err.name == 'ValidationError')
-            return res.json({error:true, message: "Invalid Input"});
-
-				  return res.json({error:true, message: "Unexpected ERROR"});
-				}
+				if (err) return next(err);
 
         var data = JSON.parse(JSON.stringify(user));
         delete data.salt;
@@ -59,7 +58,7 @@ exports.deleteUser = function(req,res,next){
 
 		res.status(200).json({message:"User deleted"});
 	});
-
+}
 exports.getUser = function(req,res,next){
   User.findOne({userid: req.params.userid},function(err, result){
     res.json({error: false, message: "single users", data: result});
