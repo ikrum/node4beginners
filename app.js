@@ -33,6 +33,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// allow cross origin , option request
+var headers = "Origin, X-Requested-With, Content-Type, Accept, "
+              +"Authorization,Content-Type, Content-Length";
+
+app.options("*",function(req,res,next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", headers);
+   //other headers here
+    res.status(200).end();
+});
+
+
+// allow cross origin for regular request
+const allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', headers);
+    next();
+};
+
+
+app.use(allowCrossDomain);
+
 app.use('/api', apiRoute);
 
 
