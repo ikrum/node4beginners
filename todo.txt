@@ -1,0 +1,4 @@
+socket
+Redis+jobQueue
+Testing and deployment, docker
+AngularJS
