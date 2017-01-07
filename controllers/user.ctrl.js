@@ -39,16 +39,11 @@ exports.addUser = function(req,res,next){
 }
 
 exports.updateUser = function(req,res,next){
-  	User.update({
-      chapterid:req.body.userid
-    },
-    {
-      $set:{
-        status:'Active'
-      }
-    },function(){
-
-    });
+  var findCondition = {chapterid:req.body.userid};
+  var updateCondition = { $set:{status:'Active'} };
+	User.update(findCondition,updateCondition,function(){
+    res.status(200).json({error:false,message:"User updated"});
+  });
 }
 exports.deleteUser = function(req,res,next){
 	User.remove({ userid:req.params.userid },function(err,doc){
@@ -58,6 +53,11 @@ exports.deleteUser = function(req,res,next){
 
 		res.status(200).json({message:"User deleted"});
 	});
+}
+exports.getUsers = function(req,res,next){
+  User.find({},function(err, result){
+    res.json({error: false, message: "all users", data: result});
+  });
 }
 exports.getUser = function(req,res,next){
   User.findOne({userid: req.params.userid},function(err, result){
