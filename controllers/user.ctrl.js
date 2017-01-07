@@ -1,6 +1,6 @@
 var User = require('../models/user.model');
 var sequence = require('../utils/dbHelper').sequenceGenerator('user');
-
+var tokenizer = require('../utils/tokenizer');
 exports.addUser = function(req,res,next){
 
 	User.findOne({email: req.body.email.toLowerCase()},function(err, user) {
@@ -53,6 +53,18 @@ exports.deleteUser = function(req,res,next){
 
 		res.status(200).json({message:"User deleted"});
 	});
+}
+exports.login = function(req,res,next){
+	if(req.body.username != "node" || req.body.password!="geek")
+		return next("Invlaid username and password");
+
+	var user = {
+		userid: 10,
+		name: "Geeks",
+		emaiL: 'node@geeks.com'
+	}
+	var token = tokenizer.generateToken(user);
+	res.json({message: "Login successful", data:{token: token}});
 }
 exports.getUsers = function(req,res,next){
   User.find({},function(err, result){
