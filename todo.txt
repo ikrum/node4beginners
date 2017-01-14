@@ -1,4 +1,36 @@
-socket
-Redis+jobQueue
-Testing and deployment, docker
-AngularJS
+Target:
+  socket
+  Redis+jobQueue
+  Testing and deployment, docker
+  AngularJS
+
+
+DAY-11:
+--------------------
+*) user registration:
+    Save password in encrypted form
+    No auth required
+
+*) verify account:
+    No auth required
+
+*) Login:
+    No auth required
+    Check if user exists
+    match encrypted password
+    return token for valid user
+
+*) Get all user array:
+    Auth required
+
+*) Get information for a single user:
+    Auth required
+
+*) Writing Test cases for each one:
+    BDT->BDD, TDD
+    Using endpoints
+    Using app instance
+    Using end() and then()...catch()
+    Write enpoints in context
+
+*) Event emitter

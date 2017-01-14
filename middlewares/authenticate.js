@@ -13,8 +13,10 @@ exports.authenticate = function(req,res,next){
 
   tokenizer.verifyToken(token, function(err, decoded) {
     if(err) {
-      if(err.name == 'TokenExpiredError') return next('Token expired');
-      return next('Invalid token');
+      if(err.name == 'TokenExpiredError')
+        return next('Authentication token expired');
+
+      return next('Authentication token invalid');
     }
     req.user = decoded;
     next();

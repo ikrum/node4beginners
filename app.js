@@ -83,6 +83,9 @@ app.use(function(err, req, res, next) {
 
   }
 
+  if(message.indexOf('Authentication') != -1)
+    status = 401;
+
   res.status(status).json({error:true, message:message});
 
 });
