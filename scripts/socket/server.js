@@ -22,7 +22,7 @@ io.on('connection', function (socket) {
   });
 
   setInterval(function(){
-    //io.emit("new_notification", {message: "New post added to your group"});
+    io.emit("new_notification", {message: "New post added to your group"});
   }, 5000);
 });
 

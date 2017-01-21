@@ -8,6 +8,9 @@ router.post('/', userCtl.addUser);
 
 // GET localhost:3000/api/users
 router.get('/', authenticate, userCtl.getUsers);
+router.get('/test', authenticate, function(req,res,next){
+  res.json(req.user);
+});
 
 // GET localhost:3000/api/users/23
 router.get('/:userid', authenticate, userCtl.getUser);
