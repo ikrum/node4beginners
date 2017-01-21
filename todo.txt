@@ -4,33 +4,20 @@ Target:
   Testing and deployment, docker
   AngularJS
 
+JOB QUEUE:
+  1) Kue
+  2) Gearman
 
-DAY-11:
---------------------
-*) user registration:
-    Save password in encrypted form
-    No auth required
+  const kue = require('kue');
+  const ui = require('kue-ui');
 
-*) verify account:
-    No auth required
-
-*) Login:
-    No auth required
-    Check if user exists
-    match encrypted password
-    return token for valid user
-
-*) Get all user array:
-    Auth required
-
-*) Get information for a single user:
-    Auth required
-
-*) Writing Test cases for each one:
-    BDT->BDD, TDD
-    Using endpoints
-    Using app instance
-    Using end() and then()...catch()
-    Write enpoints in context
-
-*) Event emitter
+  /* Job queue */
+  kue.createQueue({redis: config.REDIS_RUL});
+  ui.setup({
+      apiURL: '/kue_api', // IMPORTANT: specify the api url, Expose api for Kue UI
+      baseURL: '/kue', // IMPORTANT: specify the base url
+      updateInterval: 5000 // Optional: Fetches new data every 5000 ms
+  });
+  kue.app.set('title', 'SM v2 Queue');
+  app.use('/kue_api', kue.app); // Mount kue JSON api
+  app.use('/kue', ui.app); // Mount UI
