@@ -16,7 +16,9 @@
     "mongoose": "^4.7.5",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",

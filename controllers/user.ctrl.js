@@ -53,7 +53,14 @@ exports.login = function(req,res,next){
     // Make sure the password is correct
     if (!user.verifyPassword(req.body.password))
       return next('Incorrect password');
-    var token = tokenizer.generateToken(user);
+
+    var tokenData = {
+      userid: user.userid,
+      email: user.email,
+      full_name: user.full_name,
+      status: user.status
+    }
+    var token = tokenizer.generateToken(tokenData);
     res.json({message: "Login successful", data:{token: token}});
   });
 }
