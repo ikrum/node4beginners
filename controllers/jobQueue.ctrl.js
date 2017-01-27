@@ -1,7 +1,4 @@
 const kue = require('kue');
-
-const utils = require('../helpers/utils');
-const request = require('request');
 const nodemailer = require('nodemailer');
 
 const smtpConfig = {

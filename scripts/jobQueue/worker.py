@@ -7,7 +7,7 @@ headers = {
     'content-type': 'application/json'
 }
 
-def sendBulkSMS(worker, job):
+def sendSMS(worker, job):
     print "new job started"
     #load json data
     data = json.loads(job.data)
@@ -31,7 +31,7 @@ print "worker is waiting for jobs"
 gm_worker = gearman.GearmanWorker(['localhost:4730'])
 
 # Register task
-gm_worker.register_task('sendSMS', sendBulkSMS)
+gm_worker.register_task('sendSMS', sendSMS)
 
 # Start work loop
 gm_worker.work()

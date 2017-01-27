@@ -1,12 +1,13 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var apiRoute = require('./routes/api.route');
-
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const apiRoute = require('./routes/api.route');
+const kue = require('kue');
+const ui = require('kue-ui');
 
 mongoose.connect('mongodb://localhost/geeks', {});
 var db = mongoose.connection;
@@ -20,6 +21,17 @@ db.once('open', function () {
 
 
 var app = express();
+
+/* Job queue */
+kue.createQueue({redis: 'redis://localhost:6379/0'});
+ui.setup({
+    apiURL: '/kue_api', // IMPORTANT: specify the api url, Expose api for Kue UI
+    baseURL: '/kue', // IMPORTANT: specify the base url
+    updateInterval: 5000 // Optional: Fetches new data every 5000 ms
+});
+kue.app.set('title', 'GEEK Queue');
+app.use('/kue_api', kue.app); // Mount kue JSON api
+app.use('/kue', ui.app); // Mount UI
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
