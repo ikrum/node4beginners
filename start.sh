@@ -1,3 +1,3 @@
 #!/bin/bash
 
-NODE_ENV=production node www/bin
+NODE_ENV=production node bin/www
