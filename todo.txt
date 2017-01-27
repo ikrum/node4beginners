@@ -1,23 +1,23 @@
 Target:
-  socket
-  Redis+jobQueue
-  Testing and deployment, docker
   AngularJS
 
-JOB QUEUE:
-  1) Kue
-  2) Gearman
+Day 14:
+  Digital Ocean Setup:
+    https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
+    https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps
+    https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
 
-  const kue = require('kue');
-  const ui = require('kue-ui');
+  PM2:
+    pm2 start bin/www
+    startup: http://pm2.keymetrics.io/docs/usage/startup/
+    list
+    status
 
-  /* Job queue */
-  kue.createQueue({redis: config.REDIS_RUL});
-  ui.setup({
-      apiURL: '/kue_api', // IMPORTANT: specify the api url, Expose api for Kue UI
-      baseURL: '/kue', // IMPORTANT: specify the base url
-      updateInterval: 5000 // Optional: Fetches new data every 5000 ms
-  });
-  kue.app.set('title', 'SM v2 Queue');
-  app.use('/kue_api', kue.app); // Mount kue JSON api
-  app.use('/kue', ui.app); // Mount UI
+    Deploy: http://nicmitchell.com/2015/04/deploying-node-js-applications-with-pm2/
+
+  Docker:
+    docker build -t node4beginners .
+    docker run -p 5005:5005 node4beginners
+    docker start stop ps exec
+
+  Nginx
