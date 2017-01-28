@@ -1,23 +1,37 @@
 Target:
   AngularJS
 
-Day 14:
-  Digital Ocean Setup:
-    https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
-    https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps
-    https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
+Bower:
+  bower install angular#1.6.1 --save
+  bower install angular-ui-router --save
+  bower install angular-cookies --save
 
-  PM2:
-    pm2 start bin/www
-    startup: http://pm2.keymetrics.io/docs/usage/startup/
-    list
-    status
 
-    Deploy: http://nicmitchell.com/2015/04/deploying-node-js-applications-with-pm2/
+<html ng-app="AkiRaku">
 
-  Docker:
-    docker build -t node4beginners .
-    docker run -p 5005:5005 node4beginners
-    docker start stop ps exec
+Angular Directives:
+  ng-app: directive tells AngularJS that the <div> element is the "owner" of an AngularJS application.
+  ng-controller: directive defines the controller.
+  ng-model: directive binds the value of the input field to the application variable name.
+  ng-init: directive initializes AngularJS application variables.
 
-  Nginx
+AngularJS expression:
+  AngularJS expressions are written inside double braces: {{ expression }}.
+  <p>My first expression: {{ 5 + 5 }}</p>
+  {{ firstName + " " + lastName }}
+  <input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+
+Module:
+  AngularJS modules define applications
+  var app = angular.module('myApp', []);
+
+Controllers:
+  AngularJS controllers control applications:
+  app.controller('myCtrl', function($scope) {
+      $scope.firstName= "John";
+      $scope.lastName= "Doe";
+  });
+
+Custom Directives:
+
+Filters:

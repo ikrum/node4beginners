@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+  <div ng-app="myApp">
+    <div mydirective></div>
+    <mydirective></mydirective>
+
+
+    <div ng-app="myApp" ng-init="quantity=1;price=5">
+      Quantity: <input type="number" ng-model="quantity">
+      Costs:    <input type="number" ng-model="price">
+
+      Total in dollar: {{ quantity * price }}
+  </div>
+</div>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.directive("mydirective", function() {
+    return {
+        template : "I was made in a directive constructor!"
+    };
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<p>The url of this page is:</p>
+<h3>{{myUrl}}</h3>
+</div>
+
+<p>This example uses the built-in $location service to get the absolute url of the page.</p>
+
+
+
+<p>Today's welcome message is:</p>
+
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $location, $http) {
+  $scope.myUrl = $location.absUrl();
+  $http.get("start.html").then(function (response) {
+      $scope.myWelcome = response.data;
+  });
+});
+</script>
+
+</body>
+</html>

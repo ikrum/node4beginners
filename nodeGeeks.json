@@ -1,0 +1,222 @@
+{
+	"variables": [],
+	"info": {
+		"name": "nodeGeeks",
+		"_postman_id": "e35b068b-6502-41cc-570e-499018ed35e7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add User",
+			"request": {
+				"url": "localhost:3000/api/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Ikrum",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lname",
+							"value": "Hossain",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "ikrum.bd@gmail.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"url": "localhost:3000/api/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "ikrum.bd@gmail.com",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get Users",
+			"request": {
+				"url": "localhost:3000/api/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Ikrum",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lname",
+							"value": "Hossain",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "ikrum.bd@gmail.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get posts",
+			"request": {
+				"url": "localhost:3000/api/posts",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEyLCJlbWFpbCI6ImlrcnVtLmJkQGdtYWlsLmNvbSIsImZ1bGxfbmFtZSI6IklrcnVtIEhvc3NhaW4iLCJzdGF0dXMiOiJJTkFDVElWRSIsImlhdCI6MTQ4NTUyNzExNywiZXhwIjoxNDg1NjEzNTE3fQ.CuVoLonwtmlMDzMj8ocIZoK3a3Eh8tcrGuUzmncML6Q",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fname",
+							"value": "Ikrum",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lname",
+							"value": "Hossain",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "ikrum.bd@gmail.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add post",
+			"request": {
+				"url": "localhost:3000/api/posts",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEyLCJlbWFpbCI6ImlrcnVtLmJkQGdtYWlsLmNvbSIsImZ1bGxfbmFtZSI6IklrcnVtIEhvc3NhaW4iLCJzdGF0dXMiOiJJTkFDVElWRSIsImlhdCI6MTQ4NTUyNzExNywiZXhwIjoxNDg1NjEzNTE3fQ.CuVoLonwtmlMDzMj8ocIZoK3a3Eh8tcrGuUzmncML6Q",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Bingo starts",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "post",
+							"value": "here is the bingo detailss",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
